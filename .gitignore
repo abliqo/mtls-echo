@@ -1,4 +1,3 @@
-.bak/
+bin/
 test/certs/
-mtls-echo
 TODO.md

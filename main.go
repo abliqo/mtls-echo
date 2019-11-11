@@ -20,9 +20,9 @@ const DEFAULT_CONFIG_PATH = "config/dev.json"
 func main() {
 	loadConfig()
 
+	log.Println("Started")
 	go startRedirectServer()
 	go startTLSServer()
-	log.Println("Started")
 
 	quitChannel := make(chan os.Signal)
 	signal.Notify(quitChannel, os.Interrupt, os.Kill)
@@ -43,10 +43,6 @@ func loadConfig() {
 	if err != nil {
 		log.Fatalf("Failed to read configuration: %v", err)
 	}
-}
-
-func getEndpoint() string {
-	return fmt.Sprintf("%s:%d", viper.GetString("server.host"), viper.GetInt("server.port"))
 }
 
 func startRedirectServer() {
@@ -110,7 +106,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	p := Page{
 		Title:        "Mutual TLS Echo",
 		Cert:         c,
-		JsonEndpoint: fmt.Sprintf("https://%s/json", getEndpoint()),
+		JsonEndpoint: fmt.Sprintf("https://%s:%d/json", viper.GetString("server.host"), viper.GetInt("server.https_port")),
 	}
 	err = t.Execute(w, p)
 	if err != nil {
