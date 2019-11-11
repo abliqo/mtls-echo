@@ -1,0 +1,3 @@
+extendedKeyUsage = clientAuth
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment

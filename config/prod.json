@@ -1,0 +1,9 @@
+{
+    "server": {
+        "host": "localhost",
+        "http_port": 80,
+        "https_port": 443,
+        "cert": "/etc/mtls-echo/certs/server.pem",
+        "key": "/etc/mtls-echo/certs/server.key"
+    }
+}

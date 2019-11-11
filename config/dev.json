@@ -1,0 +1,9 @@
+{
+    "server": {
+        "host": "localhost",
+        "http_port": 8080,
+        "https_port": 1443,
+        "cert": "test/certs/server.pem",
+        "key": "test/certs/server.key"
+    }
+}
