@@ -1,9 +1,10 @@
 {
     "server": {
-        "host": "localhost",
+        "external_address": "mtls-echo.bliqo.com",
+        "host": "mtls-echo.bliqo.com",
         "http_port": 80,
         "https_port": 443,
-        "cert": "/etc/mtls-echo/certs/server.pem",
-        "key": "/etc/mtls-echo/certs/server.key"
+        "cert": "/etc/letsencrypt/live/mtls-echo.bliqo.com/fullchain.pem",
+        "key": "/etc/letsencrypt/live/mtls-echo.bliqo.com/privkey.pem"
     }
 }

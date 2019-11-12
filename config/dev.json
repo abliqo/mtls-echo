@@ -1,5 +1,6 @@
 {
     "server": {
+        "external_address": "localhost:1443",
         "host": "localhost",
         "http_port": 8080,
         "https_port": 1443,

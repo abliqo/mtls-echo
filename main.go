@@ -21,8 +21,8 @@ func main() {
 	loadConfig()
 
 	log.Println("Started")
-	go startRedirectServer()
-	go startTLSServer()
+	go startHttpServer()
+	go startTlsServer()
 
 	quitChannel := make(chan os.Signal)
 	signal.Notify(quitChannel, os.Interrupt, os.Kill)
@@ -45,8 +45,8 @@ func loadConfig() {
 	}
 }
 
-func startRedirectServer() {
-	redirectAddress := fmt.Sprintf("%s:%d", viper.GetString("server.host"), viper.GetInt("server.https_port"))
+func startHttpServer() {
+	redirectAddress := viper.GetString("server.external_address")
 	redir := http.NewServeMux()
 	redir.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		url := fmt.Sprintf("https://%s", redirectAddress)
@@ -64,7 +64,7 @@ func startRedirectServer() {
 	}
 }
 
-func startTLSServer() {
+func startTlsServer() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", rootHandler)
 	mux.HandleFunc("/json", jsonHandler)
@@ -106,7 +106,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	p := Page{
 		Title:        "Mutual TLS Echo",
 		Cert:         c,
-		JsonEndpoint: fmt.Sprintf("https://%s:%d/json", viper.GetString("server.host"), viper.GetInt("server.https_port")),
+		JsonEndpoint: fmt.Sprintf("https://%s/json", viper.GetString("server.external_address")),
 	}
 	err = t.Execute(w, p)
 	if err != nil {
@@ -122,7 +122,7 @@ func jsonHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusPreconditionRequired)
 		content := `{
 	"error": "Client certificate not provided.",
-	"help": "https://github.com/abliqo/mtls-echo/user-guide.md"
+	"help": "https://github.com/abliqo/mtls-echo-doc"
 }`
 		w.Write([]byte(content))
 		return

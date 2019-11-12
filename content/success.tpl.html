@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <style type="text/css">
-            h1, h2, p, div {
-                font-family: Arial,"Helvetica Neue";
-            }
-        </style>
-        <title>{{.Title}}</title>
-    </head>
-    <body>
-        <h1>{{.Title}}</h1>
-        <hr size="1">
-        <h2>X509 Client Certificate Information:</h2>
-        <p>
-            <b>Version:</b> {{.Cert.Version}} <br>
-            <b>Serial Number:</b> {{.Cert.SerialNumber}}<br>
-            <b>Subject:</b> {{.Cert.Subject}}<br>
-            <b>Issuer:</b> {{.Cert.Issuer}}<br>
-            <b>Not Before:</b> {{.Cert.NotBefore}}<br>
-            <b>Not After:</b> {{.Cert.NotAfter}}<br>
-            <b>Public Key Algorithm:</b> {{.Cert.PublicKeyAlgorithm}}<br>
-            <b>Public Key (in PEM format):</b><br>
-            <pre>{{.Cert.PublicKeyPem}}</pre>
-        </p>
 
-        <p>For programmatic requests use <a href="{{.JsonEndpoint}}">{{.JsonEndpoint}}</a></p>
-        <hr size="1">
-        <p>Powered by <a href="https://github.com/abliqo/mtls-echo">https://github.com/abliqo/mtls-echo</a></p>
-    </body>
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152086447-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-152086447-1');
+    </script>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        h1, h2, p, div { font-family: Arial, "Helvetica Neue"; }
+    </style>
+    <title>{{.Title}}</title>
+</head>
+
+<body>
+    <h1>{{.Title}}</h1>
+    <hr size="1">
+    <h2>X509 Client Certificate Information:</h2>
+    <p>
+        <b>Version:</b> {{.Cert.Version}} <br>
+        <b>Serial Number:</b> {{.Cert.SerialNumber}}<br>
+        <b>Subject:</b> {{.Cert.Subject}}<br>
+        <b>Issuer:</b> {{.Cert.Issuer}}<br>
+        <b>Not Before:</b> {{.Cert.NotBefore}}<br>
+        <b>Not After:</b> {{.Cert.NotAfter}}<br>
+        <b>Public Key Algorithm:</b> {{.Cert.PublicKeyAlgorithm}}<br>
+        <b>Public Key (in PEM format):</b><br>
+        <pre>{{.Cert.PublicKeyPem}}</pre>
+    </p>
+
+    <hr size="1">
+    <p>For programmatic requests consider using <a href="{{.JsonEndpoint}}">{{.JsonEndpoint}}</a></p>
+    <p>For help, please see <a href="https://github.com/abliqo/mtls-echo-doc">https://github.com/abliqo/mtls-echo-doc</a></p>
+    <p>Powered by <a href="https://github.com/abliqo">https://github.com/abliqo</a></p>
+</body>
+
 </html>
